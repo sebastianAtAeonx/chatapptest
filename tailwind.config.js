@@ -17,7 +17,7 @@ export default {
     },
   },
   daisyui: {
-    themes: [daisyuiTheme], // Ensure your theme is correctly referenced here
+    themes: daisyuiTheme.themes, // Extract the themes array correctly
   },
   plugins: [daisyui],
 };
