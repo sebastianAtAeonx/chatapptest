@@ -1,56 +1,48 @@
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-  Navigate,
-} from "react-router-dom";
-import { AuthProvider } from "./contexts/AuthContext";
-import { ThemeProvider } from "./contexts/ThemeContext";
-import Navbar from "./components/Navbar";
-import ChatPage from "./pages/ChatPage";
-import LoginPage from "./pages/LoginPage";
-import SignupPage from "./pages/SignupPage";
-import ProfilePage from "./pages/ProfilePage";
-import { useContext } from "react";
-import { AuthContext } from "./contexts/AuthContext";
+// Import necessary libraries
+import React, { useEffect, useState } from 'react';
+import { BrowserRouter } from 'react-router-dom';
+import './index.css';
 
-// Protected Route Component
-const ProtectedRoute = ({ children }) => {
-  const { user } = useContext(AuthContext);
-  return user ? children : <Navigate to="/" />;
-};
+// Import your components
+import Router from './router/Router';
+
+// Import Contexts
+import { ChatContextProvider } from './context/chatContext';
+import { FileContext } from './context/fileContext';
+import UserPreferencesProvider from './context/userPreferencesContext';
 
 function App() {
+  const [preLoader, setPreLoader] = useState(true);
+  const [preferences, setPreferences] = useState(
+    JSON.parse(localStorage.getItem('UserPreferences')),
+  );
+
+  useEffect(() => {
+    if (preferences) {
+      setTimeout(() => {
+        setPreLoader(false);
+      }, 400);
+    } else {
+      setPreLoader(false);
+    }
+  }, [preferences]);
+
   return (
-    <AuthProvider>
-      <ThemeProvider>
-        <Router>
-          <div className="min-h-screen bg-gray-100 dark:bg-gray-900">
-            <Navbar />
-            <Routes>
-              <Route path="/" element={<LoginPage />} />
-              <Route path="/signup" element={<SignupPage />} />
-              <Route
-                path="/chat"
-                element={
-                  <ProtectedRoute>
-                    <ChatPage />
-                  </ProtectedRoute>
-                }
-              />
-              <Route
-                path="/profile"
-                element={
-                  <ProtectedRoute>
-                    <ProfilePage />
-                  </ProtectedRoute>
-                }
-              />
-            </Routes>
-          </div>
-        </Router>
-      </ThemeProvider>
-    </AuthProvider>
+    <FileContext>
+      <ChatContextProvider>
+        <UserPreferencesProvider>
+          <BrowserRouter>
+            {preLoader ? (
+              <div className="w-screen h-screen flex justify-center items-center">
+                <div className="loading-spinner w-12 h-12" />
+              </div>
+            ) : (
+              <Router />
+            )}
+          </BrowserRouter>
+        </UserPreferencesProvider>
+      </ChatContextProvider>
+    </FileContext>
   );
 }
 

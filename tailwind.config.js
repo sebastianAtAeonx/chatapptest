@@ -1,6 +1,23 @@
+import daisyuiTheme from "./src/daisyui.theme";
+import daisyui from "daisyui";
+
 /** @type {import('tailwindcss').Config} */
 export default {
-  content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
-  theme: { extend: {} },
-  plugins: [],
+  content: ["./src/**/*.{js,jsx,ts,tsx}"],
+  darkMode: "class",
+  theme: {
+    extend: {
+      colors: {
+        "light-white": "#ffffff2b",
+        "dark-grey": "#202123",
+        "light-grey": "#353740",
+        accent: "var(--accent-color)",
+        neutral: "var(--neutral-color)",
+      },
+    },
+  },
+  daisyui: {
+    themes: [daisyuiTheme], // Ensure your theme is correctly referenced here
+  },
+  plugins: [daisyui],
 };
