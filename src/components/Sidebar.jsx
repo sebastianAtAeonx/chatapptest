@@ -1,15 +1,13 @@
 import React, { useState, useContext } from "react";
-import {
-  MdChevronLeft,
-  MdChevronRight,
-  MdAdd,
-  MdOutlineSettings,
-  MdList,
-  MdReceipt,
-} from "react-icons/md";
+import { MdAdd, MdOutlineSettings, MdList, MdReceipt } from "react-icons/md";
 import { ChatContext } from "../context/chatContext";
 import logo from "../assets/Dark.svg";
-import { DataArray, Sync } from "@mui/icons-material";
+import {
+  ChevronLeft,
+  ChevronRight,
+  DataArray,
+  Sync,
+} from "@mui/icons-material";
 // import Modal from './Modal';
 // import Setting from './Setting';
 // import { GoDatabase } from 'react-icons/go';
@@ -122,9 +120,15 @@ const SideBar = ({ toggleSidebarDrawer = () => {} }) => {
               onClick={() => setOpen(!open)}
             >
               {open ? (
-                <MdChevronLeft className="chatui-fontColor sidebar__btn-icon" />
+                <ChevronLeft
+                  sx={{ color: "#fff" }}
+                  className="sidebar__btn-icon"
+                />
               ) : (
-                <MdChevronRight className="chatui-fontColor sidebar__btn-icon" />
+                <ChevronRight
+                  sx={{ color: "#fff" }}
+                  className="sidebar__btn-icon"
+                />
               )}
             </div>
           ) : (
