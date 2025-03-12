@@ -1,13 +1,13 @@
-import React from 'react';
-import { useMediaQuery } from '@mui/material';
-import VerticalView from './VerticalView';
-import HorizontalView from './HorizontalView';
+import React from "react";
+import { useMediaQuery } from "@mui/material";
+import VerticalView from "./VerticalView";
+import HorizontalView from "./HorizontalView";
 
 const Layout = () => {
-  const isMobileScreen = useMediaQuery('(max-width:768px)');
+  const isMobileScreen = useMediaQuery("(max-width:768px)");
   return (
     <div
-      className=" overflow-hidden bg-base-300"
+      className=" overflow-hidden bg-[#2C2E33]"
       // bg-[#05030F]
       // bg-[#FFFAFA]
     >

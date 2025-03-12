@@ -1,14 +1,14 @@
-import React, { useEffect, useState } from 'react';
-import ReactMarkdown from 'react-markdown';
-import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
-import { oneDark } from 'react-syntax-highlighter/dist/esm/styles/prism';
+import React, { useEffect, useState } from "react";
+import ReactMarkdown from "react-markdown";
+import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
+import { oneDark } from "react-syntax-highlighter/dist/esm/styles/prism";
 // import remarkGfm from 'remark-gfm';
-import moment from 'moment';
-import person from '../assets/user.png';
-import bot_avatar from '../assets/bot-avatar.png';
-import loadingGif from '../assets/loading.gif';
-import { LuCopy, LuCopyCheck, LuDownload } from 'react-icons/lu';
-import { Box, Modal, Typography } from '@mui/material';
+import moment from "moment";
+import person from "../assets/user.png";
+import bot_avatar from "../assets/bot-avatar.png";
+import loadingGif from "../assets/loading.gif";
+import { LuCopy, LuCopyCheck, LuDownload } from "react-icons/lu";
+import { Box, Modal, Typography } from "@mui/material";
 
 /**
  * A chat message component that displays a message with a timestamp and an icon.
@@ -16,7 +16,14 @@ import { Box, Modal, Typography } from '@mui/material';
  * @param {Object} props - The properties for the component.
  */
 const ChatMessage = (props) => {
-  const { id, createdAt, text, isGif = false, ai = false, isResponseImg = false } = props.message;
+  const {
+    id,
+    createdAt,
+    text,
+    isGif = false,
+    ai = false,
+    isResponseImg = false,
+  } = props.message;
   // const isMobileScreen = props.isMobileScreen;
   const [showCopied, setShowCopied] = useState(false);
   const [preferencesData, setPreferencesData] = useState({});
@@ -25,31 +32,31 @@ const ChatMessage = (props) => {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   const style = {
-    position: 'absolute',
-    top: '50%',
-    left: '50%',
-    transform: 'translate(-50%, -50%)',
-    maxWidth: '80vw',
-    maxHeight: '80vh',
-    bgcolor: '#ffffff18',
-    borderRadius: '12px',
-    outline: 'none',
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
+    maxWidth: "80vw",
+    maxHeight: "80vh",
+    bgcolor: "#ffffff18",
+    borderRadius: "12px",
+    outline: "none",
     boxShadow: 24,
     p: 3,
   };
   const modalStyle = {
-    backdropFilter: 'blur(3px)',
+    backdropFilter: "blur(3px)",
   };
 
   useEffect(() => {
-    const UserPreferences = JSON.parse(localStorage.getItem('UserPreferences'));
+    const UserPreferences = JSON.parse(localStorage.getItem("UserPreferences"));
     if (UserPreferences) {
       setPreferencesData(UserPreferences);
     } else {
       setPreferencesData({
-        fontSize: '',
-        font: '',
-        theme: '',
+        fontSize: "",
+        font: "",
+        theme: "",
       });
     }
   }, []);
@@ -64,7 +71,7 @@ const ChatMessage = (props) => {
   };
 
   const downloadImage = (base64Data, filename) => {
-    const link = document.createElement('a');
+    const link = document.createElement("a");
     link.href = `data:image/png;base64,${base64Data}`;
     link.download = filename;
     document.body.appendChild(link);
@@ -73,18 +80,35 @@ const ChatMessage = (props) => {
   };
   return (
     <>
-      <div key={id} className={`px-4 py-2 chat ${ai ? 'chat-start' : 'chat-end'} `}>
+      <div
+        key={id}
+        className={`px-4 py-2 chat ${ai ? "chat-start" : "chat-end"} `}
+      >
         <div className="chat-image avatar">
           <div className="w-8 md:w-10 rounded-full">
-            <img alt={ai ? 'bot-Avatar' : 'userAvatar'} src={ai ? bot_avatar : person} />
+            <img
+              alt={ai ? "bot-Avatar" : "userAvatar"}
+              src={ai ? bot_avatar : person}
+            />
           </div>
         </div>
         <div
-          style={{ fontSize: preferencesData ? `${preferencesData.fontSize}px` : '16px' }}
-          className={`chat-bubble bg-accent bg-opacity-${ai ? 30 : 20} message__markdown`}
+          style={{
+            fontSize: preferencesData
+              ? `${preferencesData.fontSize}px`
+              : "16px",
+          }}
+          className={`chat-bubble bg-accent bg-opacity-${
+            ai ? 30 : 20
+          } message__markdown`}
         >
           {isGif ? (
-            <img src={loadingGif} className="h-7" alt="loading" loading="lazy" />
+            <img
+              src={loadingGif}
+              className="h-7"
+              alt="loading"
+              loading="lazy"
+            />
           ) : isResponseImg ? (
             <img
               src={`data:image/png;base64, ${text}`}
@@ -101,10 +125,10 @@ const ChatMessage = (props) => {
           <div className="mt-1 flex justify-end">
             {!isGif && ai && (
               <div
-                data-tip={isResponseImg ? 'Download' : 'Copy'}
+                data-tip={isResponseImg ? "Download" : "Copy"}
                 onClick={() =>
                   isResponseImg
-                    ? downloadImage(text, 'GenAX_Generated_Image.png')
+                    ? downloadImage(text, "GenAX_Generated_Image.png")
                     : copyToClipboard(text)
                 }
                 className="chatui-fontColor cursor-pointer relative rounded-md p-[0.185rem] tooltip tooltip-bottom tooltip-primary bg-neutral active:scale-90 hover:bg-neutral/70"

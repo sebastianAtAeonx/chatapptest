@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom/dist';
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom/dist";
 
 function Login() {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
-    email: '',
-    password: '',
+    email: "",
+    password: "",
   });
 
   function changeHandler(e) {
@@ -23,19 +23,21 @@ function Login() {
     //   return;
     // }
     window.localStorage.setItem(
-      'UserData',
+      "UserData",
       JSON.stringify({
         id: formData.email,
         password: formData.password,
-      }),
+      })
     );
 
-    navigate('/home');
+    navigate("/chat");
   };
 
   return (
     <div className="h-full">
-      <h4 className="login-heading text-2xl text-center font-bold mb-0">Login</h4>
+      <h4 className="login-heading text-2xl text-center font-bold mb-0">
+        Login
+      </h4>
       <div className="h-full pb-2 flex flex-col items-stretch justify-around">
         <form
           onSubmit={submitHandler}
@@ -65,7 +67,7 @@ function Login() {
         </form>
         <div className="w-full mt-4 flex justify-center chatui-fontColor/90">
           <p>
-            Don&apos;t Have an Account?{' '}
+            Don&apos;t Have an Account?{" "}
             <Link to="/register" className="underline italic">
               Register
             </Link>

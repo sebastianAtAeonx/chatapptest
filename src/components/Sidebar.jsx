@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext } from "react";
 import {
   MdChevronLeft,
   MdChevronRight,
@@ -6,24 +6,24 @@ import {
   MdOutlineSettings,
   MdList,
   MdReceipt,
-} from 'react-icons/md';
-import { ChatContext } from '../context/chatContext';
-import logo from '../assets/Light.svg';
-import { DataArray, Sync } from '@mui/icons-material';
+} from "react-icons/md";
+import { ChatContext } from "../context/chatContext";
+import logo from "../assets/Dark.svg";
+import { DataArray, Sync } from "@mui/icons-material";
 // import Modal from './Modal';
 // import Setting from './Setting';
 // import { GoDatabase } from 'react-icons/go';
 // import { RxDashboard } from 'react-icons/rx';
-import { useMediaQuery } from '@mui/material';
-import axios from 'axios';
-import { apiURl } from '../config';
-import { FiLogOut, FiTool, FiUser } from 'react-icons/fi';
-import { VscHome } from 'react-icons/vsc';
-import { useNavigate } from 'react-router-dom/dist';
-import { IoClose, IoSearch } from 'react-icons/io5';
-import { Toaster, toast as hotToast } from 'react-hot-toast';
-import { UserPreferencesContext } from '../context/userPreferencesContext';
-import MenuItems from './core/ui/MenuItems';
+import { useMediaQuery } from "@mui/material";
+import axios from "axios";
+import { apiURl } from "../config";
+import { FiLogOut, FiTool, FiUser } from "react-icons/fi";
+import { VscHome } from "react-icons/vsc";
+import { useNavigate } from "react-router-dom/dist";
+import { IoClose, IoSearch } from "react-icons/io5";
+import { Toaster, toast as hotToast } from "react-hot-toast";
+import { UserPreferencesContext } from "../context/userPreferencesContext";
+import MenuItems from "./core/ui/MenuItems";
 
 /**
  * A sidebar component that displays a list of nav items and a toggle
@@ -37,7 +37,7 @@ const SideBar = ({ toggleSidebarDrawer = () => {} }) => {
   const { preferences } = useContext(UserPreferencesContext);
   // const [modalOpen, setModalOpen] = useState(false);
   // const [settingsOpen, setSettingsOpen] = useState(false);
-  const isMobileScreen = useMediaQuery('(max-width:768px)');
+  const isMobileScreen = useMediaQuery("(max-width:768px)");
   const navigate = useNavigate();
 
   // function handleResize() {
@@ -53,12 +53,12 @@ const SideBar = ({ toggleSidebarDrawer = () => {} }) => {
   };
 
   const newChatHandler = () => {
-    navigate('/chat');
+    navigate("/chat");
     clearChat();
   };
 
   const home = () => {
-    navigate('/home');
+    navigate("/home");
   };
 
   const SyncFunction = () => {
@@ -76,39 +76,39 @@ const SideBar = ({ toggleSidebarDrawer = () => {} }) => {
           throw error;
         }),
       {
-        loading: 'Syncing...',
+        loading: "Syncing...",
         success: (message) => <b>{message}</b>,
         error: (error) => <b>Error: {error.message}</b>,
-      },
+      }
     );
   };
 
   const preferencesHandler = () => {
-    navigate('/preferences');
+    navigate("/preferences");
   };
 
   const searchEngineHandler = () => {
-    navigate('/search');
+    navigate("/search");
   };
 
   const logout = () => {
-    window.localStorage.removeItem('UserData');
+    window.localStorage.removeItem("UserData");
     // window.localStorage.removeItem('UserPreferences');
-    navigate('/login');
+    navigate("/login");
   };
 
   return (
     // lg:w-96
-    <section className={` ${open ? 'w-auto lg:w-64' : 'w-16'} sidebar`}>
+    <section className={` ${open ? "w-auto lg:w-64" : "w-16"} sidebar`}>
       <div className="sidebar__app-bar">
         <div className="flex w-full justify-center items-center gap-1">
           <div
             onClick={toggleSidebarDrawer(false)}
             className={`sidebar__app-logo z-30 flex justify-center items-center left-[50%] relative translate-x-[-50%] md:left-0 md:translate-x-0 ${
-              !open && 'scale-0 hidden'
+              !open && "scale-0 hidden"
             }`}
           >
-            <div onClick={() => navigate('/chat')}>
+            <div onClick={() => navigate("/chat")}>
               <img src={logo} alt="Logo" className=" md:m-0 md:w-[140px] " />
             </div>
           </div>
@@ -117,7 +117,7 @@ const SideBar = ({ toggleSidebarDrawer = () => {} }) => {
           {!isMobileScreen ? (
             <div
               className={`sidebar__btn-close w-full flex justify-items-end items-center  ${
-                !open ? 'static' : 'absolute right-0 p-2'
+                !open ? "static" : "absolute right-0 p-2"
               } `}
               onClick={() => setOpen(!open)}
             >
@@ -132,14 +132,22 @@ const SideBar = ({ toggleSidebarDrawer = () => {} }) => {
               className="sidebar__btn-close w-full flex justify-items-end items-end"
               onClick={toggleSidebarDrawer(false)}
             >
-              {' '}
-              <IoClose className="chatui-fontColor sidebar__btn-icon" size={25} />
+              {" "}
+              <IoClose
+                className="chatui-fontColor sidebar__btn-icon"
+                size={25}
+              />
             </button>
           )}
         </div>
       </div>
 
-      <MenuItems toggleSidebarDrawer={toggleSidebarDrawer} onClick={home} label="Home" open={open}>
+      <MenuItems
+        toggleSidebarDrawer={toggleSidebarDrawer}
+        onClick={home}
+        label="Home"
+        open={open}
+      >
         <VscHome />
       </MenuItems>
       <MenuItems
@@ -156,32 +164,33 @@ const SideBar = ({ toggleSidebarDrawer = () => {} }) => {
       ">
         <GoDatabase />
       </MenuItems> */}
-      <MenuItems
+
+      {/* <MenuItems
         toggleSidebarDrawer={toggleSidebarDrawer}
         onClick={SyncFunction}
         label="Sync"
         open={open}
       >
         <Sync />
-      </MenuItems>
+      </MenuItems> */}
 
-      <MenuItems
+      {/* <MenuItems
         toggleSidebarDrawer={toggleSidebarDrawer}
         label="AeonXIQ Engine"
         onClick={searchEngineHandler}
         open={open}
       >
         <IoSearch />
-      </MenuItems>
+      </MenuItems> */}
 
-      <MenuItems
+      {/* <MenuItems
         toggleSidebarDrawer={toggleSidebarDrawer}
         label="Preferences"
         onClick={preferencesHandler}
         open={open}
       >
         <FiTool />
-      </MenuItems>
+      </MenuItems> */}
 
       {/* Settings Modal */}
       {/* <div className="nav__bottom">
@@ -201,13 +210,15 @@ const SideBar = ({ toggleSidebarDrawer = () => {} }) => {
         <details className="dropdown dropdown-top p-0 h-[50px] border-none bg-transparent hover:bg-transparent shadow-none">
           <summary
             className={`bg-neutral hover:bg-primary/60 btn w-full h-full flex items-center gap-2 capitalize ${
-              open ? ' justify-start' : 'justify-center'
+              open ? " justify-start" : "justify-center"
             }`}
           >
             <div className="nav__icons chatui-fontColor">
               <MdOutlineSettings />
             </div>
-            <h6 className={`${!open && 'hidden'} font-normal chatui-fontColor`}>Settings</h6>
+            <h6 className={`${!open && "hidden"} font-normal chatui-fontColor`}>
+              Settings
+            </h6>
           </summary>
 
           <ul
@@ -225,8 +236,11 @@ const SideBar = ({ toggleSidebarDrawer = () => {} }) => {
               </a>
             </li> */}
             <li>
-              <a className="setting-menu-item chatui-fontColor" onClick={logout}>
-                <FiLogOut /> <h6 className={`${!open && 'hidden'}`}>Logout</h6>
+              <a
+                className="setting-menu-item chatui-fontColor"
+                onClick={logout}
+              >
+                <FiLogOut /> <h6 className={`${!open && "hidden"}`}>Logout</h6>
               </a>
             </li>
           </ul>
