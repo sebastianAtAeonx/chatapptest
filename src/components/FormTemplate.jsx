@@ -1,27 +1,27 @@
-import React, { useState, useCallback, useContext, useEffect } from 'react';
-import { useMediaQuery } from '@mui/material';
-import Particles from 'react-tsparticles';
-import { loadSlim } from 'tsparticles-slim';
-import { UserPreferencesContext } from '../context/userPreferencesContext';
-import { Outlet } from 'react-router-dom';
+import React, { useState, useCallback, useContext, useEffect } from "react";
+import { useMediaQuery } from "@mui/material";
+import Particles from "react-tsparticles";
+import { loadSlim } from "tsparticles-slim";
+import { UserPreferencesContext } from "../context/userPreferencesContext";
+import { Outlet } from "react-router-dom";
 
 function FormTemplate() {
   const { preferences } = useContext(UserPreferencesContext);
   const [uiElements, setUiElements] = useState({
-    bgColor: '',
-    particlesColor: '',
+    bgColor: "",
+    particlesColor: "",
   });
 
   useEffect(() => {
-    if (preferences.theme === 'dark') {
+    if (preferences.theme === "dark") {
       setUiElements({
-        bgColor: 'bg-base-100',
-        particlesColor: '#FFFFFF',
+        bgColor: "bg-base-100",
+        particlesColor: "#FFFFFF",
       });
-    } else if (preferences.theme === 'light') {
+    } else if (preferences.theme === "light") {
       setUiElements({
-        bgColor: 'bg-base-100',
-        particlesColor: '#1B1B1B',
+        bgColor: "bg-base-100",
+        particlesColor: "#1B1B1B",
       });
     }
   }, [preferences.theme]);
@@ -36,11 +36,11 @@ function FormTemplate() {
   }, []);
 
   // const navigate = useNavigate();
-  const isMobileScreen = useMediaQuery('(max-width: 600px)');
+  const isMobileScreen = useMediaQuery("(max-width: 600px)");
 
   return (
     <div className="w-screen h-screen">
-      <Particles
+      {/* <Particles
         id="tsparticles"
         init={particlesInit}
         loaded={particlesLoaded}
@@ -547,10 +547,12 @@ function FormTemplate() {
             },
           },
         }}
-      />
+      /> */}
       <div className="w-screen h-screen flex justify-center items-start">
         <div className="relative modal-box top-[50%] translate-y-[-50%] bg-primary/80 backdrop-blur-sm overflow-hidden">
-          <h3 className="login-heading text-5xl text-center mt-2 font-bold">AeonXIQ</h3>
+          <h3 className="login-heading text-5xl text-center mt-2 font-bold">
+            AeonXIQ
+          </h3>
           <Outlet />
         </div>
       </div>
@@ -562,7 +564,7 @@ function FormTemplate() {
               href="https://www.aeonx.digital/"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-orange-500"
+              className="text-purple-700"
             >
               https://www.aeonx.digital
             </a>
@@ -576,7 +578,7 @@ function FormTemplate() {
               href="https://www.aeonx.digital/"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-orange-500"
+              className="text-purple-700"
             >
               https://www.aeonx.digital
             </a>
