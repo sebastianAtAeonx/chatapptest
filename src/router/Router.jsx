@@ -11,6 +11,7 @@ import Preferences from "../components/Preferences";
 import NotFound from "../components/NotFound";
 import SearchEngine from "../pages/SearchEngine/SearchEngine";
 import Home from "../components/Home";
+import LoginPage from "../pages/LoginPage";
 
 const Router = () => {
   // const navigate = useNavigate();
@@ -60,10 +61,15 @@ const Router = () => {
       index: true,
       element: <Navigate replace to={getHomeRoute()} />,
     },
+    // {
+    //   path: "/login",
+    //   element: <FormTemplate />,
+    //   children: [{ path: "/login", element: <Login/> }],
+    // },
     {
       path: "/login",
-      element: <FormTemplate />,
-      children: [{ path: "/login", element: <Login /> }],
+      // element: <FormTemplate />,
+      children: [{ path: "/login", element: <LoginPage /> }],
     },
     {
       path: "/register",
