@@ -539,7 +539,6 @@ const ChatView = () => {
           rounded-tl-none rounded-b-none font-semibold text-xl"
         >
           <p className="w-full ml-5 select-none">
-            AeonXIQ{" "}
             {chatbotMode !== "chat" && (
               <span
                 className="text-sm px-2 py-[0.15rem] rounded-lg mb-1 cursor-pointer bg-amber-400 capitalize 
@@ -574,7 +573,7 @@ const ChatView = () => {
         ) : (
           <main className="chatview__chatarea rounded-xl backdrop-blur-xl">
             {messages.length === 0 ? (
-              <div className="select-none h-full m-3 mt-12 rounded-lg  backdrop-blur-lg flex flex-col gap-2 justify-start items-center">
+              <div className="select-none h-full m-3 mt-48 rounded-lg  backdrop-blur-lg flex flex-col gap-2 justify-start items-center">
                 {/* <img src={aeonxIqlogo} className="w-50 h-50" /> */}
                 <Heading>How can I help you ?</Heading>
                 {/* <p className=" text-lg md:text-md tracking-wider chatui-fontColor text-center">
@@ -746,47 +745,14 @@ const ChatView = () => {
             </div>
           </div>
         ) : (
-          <div className="form">
+          <div
+            className={`form ${
+              messages.length === 0
+                ? "absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[80%] md:w-[60%] lg:w-[60%]"
+                : ""
+            }`}
+          >
             <div className="flex items-center justify-between gap-x-3 w-full">
-              {/* <label>
-                <input
-                  key={inputKey}
-                  className="hidden"
-                  ref={fileInputRef}
-                  type="file"
-                  onChange={(event) => {
-                    handleFileChange(event);
-                  }}
-                />
-                <HiOutlineUpload className="chatview__btn-send cursor-pointer text-lg md:text-sm p-3 text-[#412BAC]" />
-              </label> */}
-
-              {/* <button
-                id="mic_btn"
-                onClick={() => {
-                  if (isRecording) {
-                    // console.log(isRecording);
-                    results.length = 0;
-                    stopSpeechToText();
-                    toast.error("Mic OFF");
-                  } else {
-                    // console.log(isRecording);
-                    startSpeechToText();
-                    // toast.success('Mic ON')
-                    navigator.mediaDevices
-                      .getUserMedia({ audio: true })
-                      .then(() => toast.success("Mic ON"))
-                      .catch((error) => alert(error));
-                  }
-                }}
-                className="chatview__btn-send w-16 flex text-[#412BAC]"
-              >
-                <IoMicOutline
-                  className={`${
-                    !isRecording ? "grayscale" : "grayscale-0"
-                  } text-2xl`}
-                />
-              </button> */}
               <ReactTooltip
                 anchorId="mic_btn"
                 place="top"
@@ -800,7 +766,6 @@ const ChatView = () => {
                 className="chatview__textarea-message text-[#C2C5CC] select-none h-fit"
                 rows={1}
                 value={formValue}
-                // placeholder={`Enter Your Prompt, Use / to select prompt from history, Use :command for data operations.`}
                 onKeyDown={handleKeyDown}
                 onChange={handleChange}
               />
@@ -831,42 +796,14 @@ const ChatView = () => {
                     {chatbotMode === "visualize" && (
                       <button
                         id="visualize"
-                        // disabled={!isFileCSV}
                         onClick={getAnalytics}
                         className="chatview__btn-send text-[#412BAC]"
                       >
                         <FaUncharted size={23} />
                       </button>
                     )}
-                    {/* {chatbotMode === "chat" && (
-                      <button
-                        onClick={(e) => {
-                          results.length = 0;
-                          stopSpeechToText();
-                          generateImage(e);
-                        }}
-                        id="generateImageTooltip"
-                        className="chatview__btn-send text-violet-500"
-                        disabled={!formValue}
-                      >
-                        <BsStars size={23} />
-                      </button>
-                    )} */}
                   </div>
                 )}
-                {/* <button
-                  id="tooltip"
-                  type="button"
-                  className="chatview__btn-send text-red-600"
-                  disabled={loading}
-                  onClick={clearChat}
-                >
-                  {loading ? (
-                    <div className="loading-spinner" />
-                  ) : (
-                    <MdClear size={30} />
-                  )}
-                </button> */}
               </div>
             </div>
             <ReactTooltip
@@ -876,20 +813,6 @@ const ChatView = () => {
               content="Clear Chat"
               className={` ${loading ? "hidden" : ""}`}
             />
-            {/* <ReactTooltip
-              anchorId="generateImageTooltip"
-              place="top"
-              variant="dark"
-              content="Generate Image"
-              className={` ${loading ? "hidden" : ""}`}
-            /> */}
-            {/* <ReactTooltip
-              anchorId="visualize"
-              place="top"
-              variant="dark"
-              content="Visualize Data"
-              className={` ${loading ? "hidden" : ""}`}
-            /> */}
           </div>
         )}
         <Modal
