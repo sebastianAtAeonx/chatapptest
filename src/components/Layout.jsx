@@ -7,7 +7,7 @@ const Layout = () => {
   const isMobileScreen = useMediaQuery("(max-width:768px)");
   return (
     <div
-      className=" overflow-hidden bg-[#2C2E33]"
+      className=" overflow-hidden bg-[#1F1F21]"
       // bg-[#05030F]
       // bg-[#FFFAFA]
     >

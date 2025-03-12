@@ -25,9 +25,14 @@ const Router = () => {
     protectedRoutes = [
       {
         path: "/home",
-        element: <Home />,
-        children: [{ path: "/home", element: <Home /> }],
+        element: <Layout />,
+        children: [{ path: "/home", element: <ChatView /> }],
       },
+      // {
+      //   path: "/home",
+      //   element: <Home />,
+      //   children: [{ path: "/home", element: <Home /> }],
+      // },
       {
         path: "/chat",
         element: <Layout />,

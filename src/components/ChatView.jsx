@@ -35,9 +35,9 @@ import { BsStars } from "react-icons/bs";
 import { UserPreferencesContext } from "../context/userPreferencesContext";
 import { FaUncharted } from "react-icons/fa";
 import logo from "../assets/bot-avatar.png";
-import aeonxIqlogo from "../assets/Light.svg";
 import CommandsDropdown from "./CommandsDropdown";
 import { Heading } from "../custom/customStyles";
+import { ArrowRight, East } from "@mui/icons-material";
 
 /**
  * A chat view component that displays a list of messages and a form for sending new messages.
@@ -809,7 +809,7 @@ const ChatView = () => {
                 {loading ? (
                   <button
                     onClick={handleStopClick}
-                    className="chatview__btn-send w-16 flex text-[#412BAC]"
+                    className="chatview__btn-send w-16 flex bg-[#412BAC] text-white"
                   >
                     <IoStopCircle className="text-2xl" />
                   </button>
@@ -822,10 +822,10 @@ const ChatView = () => {
                           stopSpeechToText();
                           sendMessage(e);
                         }}
-                        className="chatview__btn-send text-[#412BAC]"
+                        className="chatview__btn-send bg-[#412BAC] text-white"
                         disabled={!formValue}
                       >
-                        <MdSend size={25} />
+                        <East size={25} />
                       </button>
                     )}
                     {chatbotMode === "visualize" && (

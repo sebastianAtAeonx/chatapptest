@@ -86,10 +86,10 @@ const ChatMessage = (props) => {
       >
         <div className="chat-image avatar">
           <div className="w-8 md:w-10 rounded-full">
-            <img
+            {/* <img
               alt={ai ? "bot-Avatar" : "userAvatar"}
               src={ai ? bot_avatar : person}
-            />
+            /> */}
           </div>
         </div>
         <div
